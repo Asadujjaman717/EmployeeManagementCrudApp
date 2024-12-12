@@ -1,0 +1,78 @@
+﻿@model EmployeeManagementApp.Models.Employee
+
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+       <form asp-action="Create" asp-controller="Employees">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+               
+                <input type="text" id="Id" name="Id" value="@Model.Id" hidden /> 
+             </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label"></label>
+                <select asp-for="DepartmentId" class="form-control">
+                    <option value="">-- Select Department --</option>
+                    @foreach (var dept in (IEnumerable<EmployeeManagementApp.Models.Department>)ViewBag.Departments)
+                    {
+                        <option value="@dept.Id">@dept.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DesignationId" class="control-label"></label>
+                <select asp-for="DesignationId" class="form-control">
+                    <option value="">-- Select Designation --</option>
+                    @foreach (var desi in (IEnumerable<EmployeeManagementApp.Models.Designation>)ViewBag.Designations)
+                    {
+                        <option value="@desi.Id">@desi.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="DesignationId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,39 @@
+﻿@model EmployeeManagementApp.Models.Designation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Insert</h1>
+
+<h4>Designation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+ 
+        <form asp-action="Create" method="post">
+            <div>
+                <label for="Id">Designation ID</label>
+                <input type="text" id="Id" name="Id" value="@Model.Id" hidden />
+            </div>
+            <div>
+                <label for="Name">Designation Name</label>
+                <input type="text" id="Name" name="Name" required />
+            </div>
+            <div>
+                <label for="DesignationSalary">Designation Salary</label>
+                <input type="number" id="DesignationSalary" name="DesignationSalary"/>
+            </div>
+            <button type="submit">Create</button>
+        </form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
